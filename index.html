@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tally – expense dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <strong class="brand">Expenses Dashboard</strong>
+    <div class="tools">
+      <div class="months">
+        <button id="prev" aria-label="Previous month">‹</button>
+        <span id="month" aria-live="polite"></span>
+        <button id="next" aria-label="Next month">›</button>
+      </div>
+      <select id="cur" aria-label="Currency">
+        <option>USD</option><option>INR</option>
+      </select>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="hero">
+      <h1 id="heroTitle"></h1>
+      <p class="total" id="total"></p>
+      <p class="budgetline">of <input id="budget" type="number" min="0" step="10" aria-label="Monthly budget"> budget, <span id="left"></span></p>
+      <div class="bar" id="bar" role="img" aria-label="Spending split by category"></div>
+    </section>
+
+    <form class="panel" id="form">
+      <h2>Add expense</h2>
+      <label>Amount<input id="amt" type="number" inputmode="decimal" min="0.01" step="0.01" required></label>
+      <label>What was it for?<input id="note" type="text" maxlength="40" placeholder="Coffee with Sam"></label>
+      <label>Category<select id="cat"></select></label>
+      <label>Date<input id="date" type="date" required></label>
+      <button class="primary" type="submit">Add expense</button>
+    </form>
+
+    <section class="cats">
+      <h2>By category</h2>
+      <ul id="cats"></ul>
+    </section>
+
+    <section class="txns">
+      <div class="head"><h2 id="listTitle"></h2><button id="clear" hidden>Show all</button></div>
+      <ul id="list"></ul>
+      <p id="empty" hidden>Nothing spent this month yet. Add an expense to see it here. <button id="sample" hidden>Load sample data</button></p>
+    </section>
+  </main>
+
+  <footer>
+    <span>Saved in your browser only.</span>
+    <button id="reset">Reset to sample data</button>
+  </footer>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
